@@ -22,7 +22,7 @@ from misk.commands import set_bot_commands
 
 load_dotenv()
 cluster = AsyncIOMotorClient(
-    'mongodb+srv://kerrek8:mp0shiue0mdb@aiogrambot.2vjshy0.mongodb.net/''?retryWrites=true&w=majority')
+    f'mongodb+srv://kerrek8:{str(os.getenv("MDBPASSWORD"))}@aiogrambot.2vjshy0.mongodb.net/''?retryWrites=true&w=majority')
 db = cluster.cubic_game
 
 bot = Bot(os.getenv("TOKEN"))
