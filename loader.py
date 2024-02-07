@@ -30,7 +30,7 @@ webhook_uri = 'https://aio3bot.onrender.com' + '/' + str(os.getenv('TOKEN'))
 dp = Dispatcher(db=db, bot=bot)
 dp.include_routers(
     cansel.router, games.router, horo.router, smart.router, lightning.router, weather.router, sovmest.router,
-    start.router,  cubic_game_main.router
+    start.router, cubic_game_main.router
 )
 
 
@@ -55,6 +55,7 @@ async def webhook_response(update: dict):
     return await dp.feed_update(bot=bot, update=Update(**update))
 
 
+@app.head('/')
 @app.get('/')
 async def alive():
     return "Alive"
