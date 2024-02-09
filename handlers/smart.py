@@ -12,6 +12,7 @@ from keyboards.inline_keyboards.builder import inline_builder
 router = Router()
 
 
+@router.callback_query(F.data == 'start_smart')
 @router.message(Command('smart'))
 async def smart(m: Message):
     # noinspection PyBroadException

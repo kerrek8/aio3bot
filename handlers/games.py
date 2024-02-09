@@ -8,6 +8,7 @@ from keyboards.reply_keyboards.games_kb import games_kb
 router = Router()
 
 
+@router.callback_query(F.data == 'start_games')
 @router.message(Command("game"))
 async def game(message: Message):
     kb = await games_kb()

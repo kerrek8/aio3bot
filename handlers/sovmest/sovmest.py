@@ -11,6 +11,7 @@ from misk.sovmest_misks import get_znaks, transcription
 router = Router()
 
 
+@router.callback_query(F.data == 'start_sovmest')
 @router.message(Command('sovmestimost'))
 async def sovmestimost(m: Message):
     kb = await sovmest_znak_kb()

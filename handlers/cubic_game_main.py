@@ -12,6 +12,7 @@ from keyboards.reply_keyboards.builder import reply_builder
 router = Router()
 
 
+@router.callback_query(F.data == 'start_dicegame')
 @router.message(Command('cubic_game'))
 async def start_game(m: Message, db: MDB):
     user = await db.users.find_one({'_id': m.from_user.id})

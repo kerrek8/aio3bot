@@ -12,6 +12,7 @@ from misk.horo_misks import transcription
 router = Router()
 
 
+@router.callback_query(F.data == 'start_horo')
 @router.message(Command('horoscope'))
 async def start(m: Message):
     kb = await horo_znak_kb()

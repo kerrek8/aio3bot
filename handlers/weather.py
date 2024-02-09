@@ -18,6 +18,7 @@ load_dotenv()
 router = Router()
 
 
+@router.callback_query(F.data == 'start_weather')
 @router.message(Command('weather'))
 async def weather(message: Message):
     kb = await inline_builder(text=['Стрежевой', 'Тюмень', 'Текущее местоположение', 'Отмена'],

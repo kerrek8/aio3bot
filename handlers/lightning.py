@@ -8,6 +8,7 @@ from keyboards.inline_keyboards.builder import inline_builder
 router = Router()
 
 
+@router.callback_query(F.data == 'start_lightning')
 @router.message(Command("lightning"))
 async def lightning(message: Message):
     t = ['-5', '-1', '+1', '+5']
