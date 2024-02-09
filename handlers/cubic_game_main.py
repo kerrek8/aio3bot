@@ -13,7 +13,7 @@ router = Router()
 
 @router.callback_query(F.data == 'start_dicegame')
 async def start_game(c: CallbackQuery, db: MDB):
-    user = await db.users.find_one({'_id': m.from_user.id})
+    user = await db.users.find_one({'_id': c.from_user.id})
     users_in_search = await db.users.count_documents({'game.status': 1})
     kb = await reply_builder(text='🔎 Поиск')
     await c.answer()
