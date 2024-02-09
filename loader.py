@@ -23,7 +23,7 @@ from misk.commands import set_bot_commands
 load_dotenv()
 cluster = AsyncIOMotorClient(
     f'mongodb+srv://kerrek8:{str(os.getenv("MDBPASSWORD"))}@aiogrambot.2vjshy0.mongodb.net/''?retryWrites=true&w=majority')
-db = cluster.cubic_game
+db = cluster.aiogram3bot
 
 bot = Bot(os.getenv("TOKEN"))
 webhook_uri = 'https://aio3bot.onrender.com' + '/' + str(os.getenv('TOKEN'))
