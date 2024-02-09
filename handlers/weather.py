@@ -19,12 +19,12 @@ router = Router()
 
 
 @router.callback_query(F.data == 'start_weather')
-@router.message(Command('weather'))
-async def weather(message: Message):
+async def weather(c: CallbackQuery):
     kb = await inline_builder(text=['Стрежевой', 'Тюмень', 'Текущее местоположение', 'Отмена'],
                               callback_data=['city_strej', 'city_tymen', 'curent_location', 'weather_cansel'],
                               sizes=[2, 1, 1])
-    await message.answer("Выберите город", reply_markup=kb)
+    await c.answer()
+    await c.message.answer("Выберите город", reply_markup=kb)
 
 
 @router.callback_query(F.data == 'weather_cansel')
