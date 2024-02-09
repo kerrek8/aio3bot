@@ -13,10 +13,10 @@ router = Router()
 
 
 @router.callback_query(F.data == 'start_horo')
-@router.message(Command('horoscope'))
-async def start(m: Message):
+async def start(c: CallbackQuery):
     kb = await horo_znak_kb()
-    await m.answer('Выбери знак зодиака', reply_markup=kb)
+    await c.answer()
+    await c.message.answer('Выбери знак зодиака', reply_markup=kb)
 
 
 @router.callback_query(F.data == 'horo_cansel')

@@ -12,10 +12,10 @@ router = Router()
 
 
 @router.callback_query(F.data == 'start_sovmest')
-@router.message(Command('sovmestimost'))
-async def sovmestimost(m: Message):
+async def sovmestimost(c: CallbackQuery):
     kb = await sovmest_znak_kb()
-    await m.answer('Выберите знак девушки', reply_markup=kb)
+    await c.answer()
+    await c.message.answer('Выберите знак девушки', reply_markup=kb)
 
 
 @router.callback_query(F.data == 'sovmest_cansel')

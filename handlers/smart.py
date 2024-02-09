@@ -13,13 +13,13 @@ router = Router()
 
 
 @router.callback_query(F.data == 'start_smart')
-@router.message(Command('smart'))
-async def smart(m: Message):
+async def smart(c: CallbackQuery):
     # noinspection PyBroadException
     author, info = await get_smart()
     s = f'<b>{info}</b>\n\u2014 <i>{author}</i>'
     kb = await inline_builder(text=['Ещё', 'Выход'], callback_data=['smart_more', 'smart_cansel'], sizes=[1, 1])
-    await m.answer(s, parse_mode='html', reply_markup=kb)
+    await c.answer()
+    await c.message.answer(s, parse_mode='html', reply_markup=kb)
 
 
 async def get_smart() -> (str, str):

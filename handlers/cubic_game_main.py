@@ -1,7 +1,6 @@
 from aiogram import F, Bot
 from aiogram.dispatcher.router import Router
 from aiogram.enums import DiceEmoji
-from aiogram.filters import Command
 from aiogram.types import Message, CallbackQuery, ReplyKeyboardRemove
 from aiogram.utils.markdown import hcode
 from motor.core import AgnosticDatabase as MDB
@@ -13,18 +12,18 @@ router = Router()
 
 
 @router.callback_query(F.data == 'start_dicegame')
-@router.message(Command('cubic_game'))
-async def start_game(m: Message, db: MDB):
+async def start_game(c: CallbackQuery, db: MDB):
     user = await db.users.find_one({'_id': m.from_user.id})
     users_in_search = await db.users.count_documents({'game.status': 1})
     kb = await reply_builder(text='🔎 Поиск')
-    await m.answer('Начинай поиск и играй\n'
-                   f'Пользователей в поиске: {hcode(users_in_search)}\n\n'
-                   'Статистика: \n'
-                   f'Победа: {hcode(user["stats"]["wins"])}\n'
-                   f'Поражение: {hcode(user["stats"]["losses"])}\n'
-                   f'Ничья: {hcode(user["stats"]["tie"])}', reply_markup=kb, parse_mode='html'
-                   )
+    await c.answer()
+    await c.message.answer('Начинай поиск и играй\n'
+                           f'Пользователей в поиске: {hcode(users_in_search)}\n\n'
+                           'Статистика: \n'
+                           f'Победа: {hcode(user["stats"]["wins"])}\n'
+                           f'Поражение: {hcode(user["stats"]["losses"])}\n'
+                           f'Ничья: {hcode(user["stats"]["tie"])}', reply_markup=kb, parse_mode='html'
+                           )
 
 
 @router.message(F.text.lower().contains('поиск'))

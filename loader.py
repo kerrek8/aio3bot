@@ -8,7 +8,6 @@ from fastapi import FastAPI
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from handlers import (
-    cansel,
     games,
     horo,
     lightning,
@@ -29,7 +28,7 @@ bot = Bot(os.getenv("TOKEN"))
 webhook_uri = 'https://aio3bot.onrender.com' + '/' + str(os.getenv('TOKEN'))
 dp = Dispatcher(db=db, bot=bot)
 dp.include_routers(
-    cansel.router, games.router, horo.router, smart.router, lightning.router, weather.router, sovmest.router,
+    games.router, horo.router, smart.router, lightning.router, weather.router, sovmest.router,
     start.router, cubic_game_main.router
 )
 
@@ -43,7 +42,6 @@ async def lifespan(app: FastAPI):
     await start()
     print(await bot.set_webhook(url=webhook_uri, allowed_updates=[]), 'webhook was set')
     yield
-
 
 
 app = FastAPI(docs_url=None, lifespan=lifespan)

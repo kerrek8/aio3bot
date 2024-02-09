@@ -9,8 +9,7 @@ router = Router()
 
 
 @router.callback_query(F.data == 'start_lightning')
-@router.message(Command("lightning"))
-async def lightning(message: Message):
+async def lightning(c: CallbackQuery):
     t = ['-5', '-1', '+1', '+5']
     cd = ['lightnumber_' + i + '_0' for i in t]
     t.append('Готово')
@@ -18,7 +17,8 @@ async def lightning(message: Message):
     cd.append('light_done')
     cd.append('light_cansel')
     kb = await inline_builder(text=t, callback_data=cd, sizes=[4, 1])
-    await message.answer(f'Введите количество секунд, прошедшее с момента вспышки до грома: 0', reply_markup=kb)
+    await c.answer()
+    await c.message.answer(f'Введите количество секунд, прошедшее с момента вспышки до грома: 0', reply_markup=kb)
 
 
 @router.callback_query(F.data.startswith('lightnumber_'))
