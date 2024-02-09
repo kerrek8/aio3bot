@@ -14,7 +14,7 @@ from handlers import (
     lightning,
     smart,
     weather,
-    cubic_game_main,
+    #cubic_game_main,
     start,
 )
 from handlers.sovmest import sovmest
@@ -30,7 +30,7 @@ webhook_uri = 'https://aio3bot.onrender.com' + '/' + str(os.getenv('TOKEN'))
 dp = Dispatcher(db=db, bot=bot)
 dp.include_routers(
     cansel.router, games.router, horo.router, smart.router, lightning.router, weather.router, sovmest.router,
-    start.router, cubic_game_main.router
+    start.router, #cubic_game_main.router
 )
 
 
