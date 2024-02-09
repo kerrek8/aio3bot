@@ -9,11 +9,19 @@ router = Router()
 
 @router.message(CommandStart())
 async def start(m: Message, db: MDB):
-    s = '<b>Вот список моих команд</b>\n\n' + '/start - ФУНКЦИИ БОТА\n' + '/cubic_game - игра в бросок кубика\n' + \
-        '/weather - погода\n' + '/lightning - калькулятор молний\n' + '/game - игры\n' + '/horoscope - гороскоп\n' + \
-        '/sovmestimost - совместимость знаков зодиака\n' + '/smart - умная мысль\n' + '/cansel - Отмена\n'
+    s = ('<b>Вот список моих команд</b>\n\n' +
+         '/start - ФУНКЦИИ БОТА\n' +
+         '/cubic_game - игра в бросок кубика\n' +
+         '/weather - погода\n' +
+         '/lightning - калькулятор молний\n' +
+         '/game - игры\n' +
+         '/horoscope - гороскоп\n' +
+         '/sovmestimost - совместимость знаков зодиака\n' +
+         '/smart - умная мысль\n' + '/cansel - Отмена\n')
     pattern = {
         '_id': m.from_user.id,
+        'first_name': m.from_user.first_name,
+        'username': m.from_user.username,
         'stats': {'wins': 0, 'losses': 0, 'tie': 0},
         'game': {'status': 0, 'value': 0, 'rid': 0}
     }
